@@ -10,6 +10,8 @@
   "dependencies": {
     "express": "^4.16.1",
     "node-cmd": "^3.0.0",
-    "body-parser": "^1.18.2"
+    "body-parser": "^1.18.2",
+    "delay": "latest",
+    "ssh2-utils": "latest"
   }
 }
