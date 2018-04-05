@@ -1,5 +1,7 @@
 node_modules
-
 */node_modules
-
 */*/node_modules
+*/*/*/node_modules
+src/mongodb/*
+src/mongodb/diagnostic.data/*
+src/mongodb/journal/*
