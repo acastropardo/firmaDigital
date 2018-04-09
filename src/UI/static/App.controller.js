@@ -96,18 +96,18 @@ sap.ui.define([
 
 ///
 
-        // var aData = jQuery.ajax({
-        //         type : "GET",
-        //         contentType : "application/json",
-        //         url : "http://165.227.205.2/sso/sf",
-        //         dataType : "json",
-        //         success : function(data,textStatus, jqXHR) {
-        //             oModel.setData({modelData : data}); 
-        //             alert("success to post");
-        //             MessageToast.show(data);
-        //         }
+         var aData = jQuery.ajax({
+                 type : "GET",
+                 contentType : "application/json",
+                 url : "http://http://localhost:10000/login",
+                 dataType : "json",
+                 success : function(data,textStatus, jqXHR) {
+                     //oModel.setData({modelData : data}); 
+                     //alert("success to post");
+                     MessageToast.show(data);
+                 }
 
-        //     });
+             });
 
 //
 
