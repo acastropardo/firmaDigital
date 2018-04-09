@@ -12,6 +12,12 @@
     "delay": "^2.0.0",
     "express": "^4.16.1",
     "node-cmd": "^3.0.0",
+<<<<<<< HEAD
     "ssh2-utils": "^1.0.28"
+=======
+    "body-parser": "^1.18.2",
+    "delay": "latest",
+    "ssh2-utils": "latest"
+>>>>>>> refs/remotes/origin/master
   }
 }
