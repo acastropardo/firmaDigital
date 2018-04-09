@@ -94,7 +94,6 @@ sap.ui.define([
         this.getView().setBusy(true);
 
 
-///
 
          var aData = jQuery.ajax({
                  type : "GET",
@@ -109,7 +108,6 @@ sap.ui.define([
 
              });
 
-//
 
         
         var oModel = new JSONModel({
