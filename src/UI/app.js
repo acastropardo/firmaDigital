@@ -4,6 +4,17 @@ var express = require('express');
 var app = express();
 var user = require('./routes/user.js');
 
+var session = require('express-session');
+var sess;
+
+
+// Express Session
+ app.use(session({
+     secret: 'secret',
+     saveUninitialized: true,
+     resave: true
+ }));
+
 
 app.use('/', express.static('static'));
 app.use('/resources', express.static('node_modules/openui5.runtime.downloader/lib/resources'));
