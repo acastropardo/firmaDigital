@@ -93,6 +93,7 @@ sap.ui.define([
       onInit: function(){
         this.getView().setBusy(true);
 
+
       /*********************************************/
       var oModelJ = new sap.ui.model.json.JSONModel();
         //
@@ -104,10 +105,30 @@ sap.ui.define([
             success: function(response){
             var data = response;  // binding to /value can also take place here
               oModelJ.setData(data); 
-              MessageToast.show('Usuario Success: '+data.username);
+              MessageToast.show('Usuario Success: '+data.username + '   RUT = '+data.rut);
             }
         });
       /*********************************************/
+
+
+            /*********************************************/
+
+      
+      var oModelEC = new sap.ui.model.json.JSONModel();
+
+      $.ajax({
+          url: "./odataec",
+            dataType: 'json',
+            success: function(response){
+            var data = response;  // binding to /value can also take place here
+              oModelEC.setData(data); 
+
+              alert('Userid '+ data.d.userId);
+            }
+        })
+        
+      /*********************************************/
+
         
         var oModel = new JSONModel({
         Source: 'http://'+server+'/visualizar?id=23018996-K',

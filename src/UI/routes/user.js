@@ -39,6 +39,7 @@ router.use(function timeLog(req, res, next) {
    sess = req.session;
 
    sess.username = JSON.parse(req.params[0]).name;
+   sess.rut = JSON.parse(req.params[0]).rut;
    //sess.username =
 
    if(sess.username){
