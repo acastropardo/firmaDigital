@@ -93,22 +93,21 @@ sap.ui.define([
       onInit: function(){
         this.getView().setBusy(true);
 
-
-
-         var aData = jQuery.ajax({
-                 type : "GET",
-                 contentType : "application/json",
-                 url : "http://http://localhost:10000/login",
-                 dataType : "json",
-                 success : function(data,textStatus, jqXHR) {
-                     //oModel.setData({modelData : data}); 
-                     //alert("success to post");
-                     MessageToast.show(data);
-                 }
-
-             });
-
-
+      /*********************************************/
+      var oModelJ = new sap.ui.model.json.JSONModel();
+        //
+        // Perform a jQuery .ajax request
+        //
+        $.ajax({
+          url: "./login",
+            dataType: 'json',
+            success: function(response){
+            var data = response;  // binding to /value can also take place here
+              oModelJ.setData(data); 
+              MessageToast.show('Usuario Success: '+data.username);
+            }
+        });
+      /*********************************************/
         
         var oModel = new JSONModel({
         Source: 'http://'+server+'/visualizar?id=23018996-K',
