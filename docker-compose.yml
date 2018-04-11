@@ -4,6 +4,8 @@ services:
   app:
     container_name: app_instance_001
 
+    image: acastropardo/app_firma_digital
+
     # Build the Dockerfile that is in the web directory
     build: ./src/server/
 
@@ -57,6 +59,7 @@ services:
 
 
   firmad:
+    image: acastropardo/firma_digital
     container_name: firma_digital
     build: ./src/firmaD
     ports:
@@ -68,6 +71,7 @@ services:
      - app
 
   frontend_firmad:
+    image: acastropardo/frontend_firmadigitalv2
     container_name: frontend_firmadigitalv2
     build: ./src/UI
     ports:
