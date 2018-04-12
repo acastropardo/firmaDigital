@@ -77,7 +77,7 @@ request({
 
 router.get('/usuarios', function(req, res){
 	var key = 'basic U0ZBUElAYWdyb3N1cGVyc0Q6UGhyMjAxOA==';
-  	var url = "https://api19.sapsf.com/odata/v2/User/$format=json";
+  	var url = "https://api19.sapsf.com/odata/v2/User?$format=json";
 
   	console.log(url);
 
