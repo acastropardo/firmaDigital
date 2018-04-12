@@ -9,11 +9,10 @@
   },
   "dependencies": {
     "body-parser": "^1.18.2",
-    "delay": "^2.0.0",
+    "delay": "latest",
     "express": "^4.16.1",
     "node-cmd": "^3.0.0",
-    "body-parser": "^1.18.2",
-    "delay": "latest",
+    "ssh2-sftp-client": "^2.1.1",
     "ssh2-utils": "latest"
   }
 }
