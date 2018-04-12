@@ -39,6 +39,7 @@
     <columns>
       <Column id="userId" width="12em"><Text text="Userid" /></Column>
       <Column id="jobCode" width="12em"><Text text="jobCode" /></Column>
+      <Column id="fullName" width="12em"><Text text="fullName" /></Column>
 
     </columns>
     <items>
@@ -49,6 +50,10 @@
         
         <cells>
            <Text text="{path:'tabModel>jobCode'}" />
+        </cells>
+
+        <cells>
+           <Text text="{path:'tabModel>defaultFullName'}" />
         </cells>
       </ColumnListItem>
 
