@@ -108,24 +108,7 @@ sap.ui.define([
               MessageToast.show('Usuario Success: '+data.username + '   RUT = '+data.rut);
             }
         });
-      /*********************************************/
 
-
-var oModelUser = new sap.ui.model.json.JSONModel();
-
-      $.ajax({
-          url: "./usuarios",
-            dataType: 'json',
-            success: function(response){
-            var data = response;  // binding to /value can also take place here
-              oModelUser.setData(data); 
-
-              //alert('Userid '+ data.d.userId);
-            }
-        })
-
-
-            /*********************************************/
 
       
       var oModelEC = new sap.ui.model.json.JSONModel();
@@ -137,11 +120,48 @@ var oModelUser = new sap.ui.model.json.JSONModel();
             var data = response;  // binding to /value can also take place here
               oModelEC.setData(data); 
 
-              alert('Userid '+ data.d.userId);
+              MessageToast.show('Userid lectura odata'+ data.d.userId);
             }
         })
+
+     
+
         
       /*********************************************/
+
+
+            /*********************************************/
+
+
+    var oModelUser = new sap.ui.model.json.JSONModel();
+    //this.getView().setModel(oModelUser);
+
+      $.ajax({
+          url: "./odataec/usuarios",
+            dataType: 'json',
+            success: function(response){
+            
+            var data = response;  // binding to /value can also take place here
+              oModelUser.setData(data); 
+              MessageToast.show('userid: '+data.d.userId );
+
+              //alert('Userid '+ data.d.userId);
+            }
+        })
+
+        var tablaUsuarios = this.getView().byId("tablaUsuarios");
+        
+        tablaUsuarios.setModel(oModelUser,"tabModel");
+
+
+        this.getView().byId("tablaUsuarios").setModel(oModelUser,"userModel");
+
+       //this.getView().setModel(oModelUser, "tabModel");
+
+
+
+
+            /*********************************************/
 
         
         var oModel = new JSONModel({

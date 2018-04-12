@@ -57,8 +57,8 @@ request({
     if(error) {
         console.log(error);
     } else {
-        console.log(response.statusCode);
-        console.log(body);
+        //console.log(response.statusCode);
+        //console.log(body);
 
         //var username = JSON.parse(body).username;
         //console.log(body.username);
@@ -77,9 +77,7 @@ request({
 
 router.get('/usuarios', function(req, res){
 	var key = 'basic U0ZBUElAYWdyb3N1cGVyc0Q6UGhyMjAxOA==';
-  	var url = "https://api19.sapsf.com/odata/v2/User?$format=json";
-
-  	console.log(url);
+  	var url = "https://api19.sapsf.com/odata/v2/User?$format=json&$top=10";
 
 
   	//Lets configure and request
@@ -98,9 +96,6 @@ request({
     } else {
         console.log(response.statusCode);
         console.log(body);
-
-        //var username = JSON.parse(body).username;
-        //console.log(body.username);
         res.setHeader('Content-Type', 'application/json');
         res.send(body);
     }
@@ -160,7 +155,7 @@ router.get('/upsert', function(req, res){
 
 	//Lets configure and request
 
-	console.log(JSON.stringify(body));
+	//console.log(JSON.stringify(body));
 
 	request({
     url: url, //URL to hit
@@ -175,8 +170,8 @@ router.get('/upsert', function(req, res){
     if(error) {
         console.log(error);
     } else {
-        console.log(response.statusCode);
-        console.log(body);
+        //console.log(response.statusCode);
+        //console.log(body);
 
         //var username = JSON.parse(body).username;
         //console.log(body.username);
