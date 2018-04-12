@@ -31,6 +31,11 @@ router.use(function timeLog(req, res, next) {
 
 
 
+
+
+
+
+
   
 router.get('/', function(req, res){
 
@@ -67,6 +72,41 @@ request({
 	
 
 
+
+});
+
+router.get('/usuarios', function(req, res){
+	var key = 'basic U0ZBUElAYWdyb3N1cGVyc0Q6UGhyMjAxOA==';
+  	var url = "https://api19.sapsf.com/odata/v2/User/$format=json";
+
+  	console.log(url);
+
+
+  	//Lets configure and request
+request({
+    url: url, //URL to hit
+    //qs: {from: 'example', time: +new Date()}, //Query string data
+    method: 'GET', // specify the request type
+    headers: { // speciyfy the headers
+        'Authorization': 'Basic U0ZBUElAYWdyb3N1cGVyc0Q6UGhyMjAxOA==',
+        'Custom-Header': 'Custom Value'
+    },
+    //body: 'Hello Hello! String body!' //Set the body as a string
+}, function(error, response, body){
+    if(error) {
+        console.log(error);
+    } else {
+        console.log(response.statusCode);
+        console.log(body);
+
+        //var username = JSON.parse(body).username;
+        //console.log(body.username);
+        res.setHeader('Content-Type', 'application/json');
+        res.send(body);
+    }
+
+
+});
 
 });
 

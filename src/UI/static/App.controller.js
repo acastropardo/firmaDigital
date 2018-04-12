@@ -111,6 +111,20 @@ sap.ui.define([
       /*********************************************/
 
 
+var oModelUser = new sap.ui.model.json.JSONModel();
+
+      $.ajax({
+          url: "./usuarios",
+            dataType: 'json',
+            success: function(response){
+            var data = response;  // binding to /value can also take place here
+              oModelUser.setData(data); 
+
+              //alert('Userid '+ data.d.userId);
+            }
+        })
+
+
             /*********************************************/
 
       

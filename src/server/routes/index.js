@@ -13,11 +13,13 @@ router.get('/sso/sf/inicio', ensureAuthenticatedInicio, function(req, res){
 function ensureAuthenticated(req, res, next){
 	if(req.isAuthenticated()){
 
+		console.log(req.user);
+
     	//res.json(req.user);
     	res.redirect('http://localhost:10000/user/'+JSON.stringify(req.user));
 		//return next();
 
-		//console.log(req.user);
+		
 
 		/*router.post('http://localhost:10000',function(req, res){
 			res.render('index');
@@ -33,6 +35,8 @@ function ensureAuthenticated(req, res, next){
 
 function ensureAuthenticatedInicio(req, res, next){
 	if(req.isAuthenticated()){
+
+		console.log(req.user);
     	//res.json(req.user);
     	res.redirect('http://localhost:10000/index.html?user='+JSON.stringify(req.user));
 		//return next();
