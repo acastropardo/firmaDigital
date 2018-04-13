@@ -46,7 +46,8 @@ var router = express.Router();              // get an instance of the express Ro
 	var id = req.query.id; // $_GET["id"]
 
 
-	console.log(id);
+
+	console.log('Comando visualizar: '+ id);
 
  	ssh.getFile(server,'/pruebaPDF/'+id+'.pdf','./'+id+'.pdf', function(err){
 	        if(err){ 

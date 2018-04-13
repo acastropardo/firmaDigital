@@ -10,6 +10,7 @@ sap.ui.define([
       var remoto = "165.227.205.2:9999"; 
       var servicio = "firmad";
       var server = host;
+      var rut = "";
    
    return Controller.extend("HelloWorld.App", {
 
@@ -19,19 +20,16 @@ sap.ui.define([
 
         this.getView().setBusy(true);
 
-         //var oHtml = this.getView().byId("pdfContainer");
+
          var clave = this.getView().byId("password").getValue();
 
          if (clave != ""){
           MessageToast.show("Firmando Aceptado");
 
-         //var content = '<iframe height="100%" width="100%" allowfullscreen src="http://'+server+'/firmar?id=23018996-K&motivo=prueba_aceptado&clave='+clave+'" ></iframe>';
-          //MessageToast.show(content);
 
-          //oHtml.setContent(content);
 
           var oModel = new JSONModel({
-            Source: 'http://'+server+'/firmar?id=23018996-K&clave='+clave+'&motivo=prueba_aceptado',
+            Source: 'http://'+server+'/firmar?id='+rut+'&clave='+clave+'&motivo=prueba_aceptado',
             Title: "Documento Aceptado",
             Height: "600px"
             
@@ -63,7 +61,7 @@ sap.ui.define([
           if (clave != ""){
 
             var oModel = new JSONModel({
-            Source: 'http://'+server+'/firmar?id=23018996-K&clave='+clave+'&motivo=prueba_rechazado',
+            Source: 'http://'+server+'/firmar?id='+rut+'&clave='+clave+'&motivo=prueba_rechazado',
             Title: "Documento Rechazado",
             Height: "600px"
             
@@ -91,10 +89,11 @@ sap.ui.define([
 
 
       onInit: function(){
+
+
         this.getView().setBusy(true);
 
 
-      /*********************************************/
       var oModelJ = new sap.ui.model.json.JSONModel();
         //
         // Perform a jQuery .ajax request
@@ -102,35 +101,31 @@ sap.ui.define([
         $.ajax({
           url: "./login",
             dataType: 'json',
+            async: false,
             success: function(response){
-            var data = response;  // binding to /value can also take place here
-              oModelJ.setData(data); 
+              var data = response;  // binding to /value can also take place here
+              oModelJ.setData(data);
+              rut = data.rut;
               MessageToast.show('Usuario Success: '+data.username + '   RUT = '+data.rut);
+
             }
         });
 
 
       
-      var oModelEC = new sap.ui.model.json.JSONModel();
+      // var oModelEC = new sap.ui.model.json.JSONModel();
 
-      $.ajax({
-          url: "./odataec",
-            dataType: 'json',
-            success: function(response){
-            var data = response;  // binding to /value can also take place here
-              oModelEC.setData(data); 
+      // $.ajax({
+      //     url: "./odataec",
+      //       dataType: 'json',
+      //       success: function(response){
+      //       var data = response;  // binding to /value can also take place here
+      //         oModelEC.setData(data); 
 
-              MessageToast.show('Userid lectura odata'+ data.d.userId);
-            }
-        })
+      //         MessageToast.show('Userid lectura odata'+ data.d.userId);
+      //       }
+      //   })
 
-     
-
-        
-      /*********************************************/
-
-
-            /*********************************************/
 
 
     var oModelUser = new sap.ui.model.json.JSONModel();
@@ -139,13 +134,13 @@ sap.ui.define([
       $.ajax({
           url: "./odataec/usuarios",
             dataType: 'json',
+            async: false,
             success: function(response){
             
             var data = response;  // binding to /value can also take place here
               oModelUser.setData(data); 
-              MessageToast.show('userid: '+data.d.userId );
+              
 
-              //alert('Userid '+ data.d.userId);
             }
         })
 
@@ -156,16 +151,9 @@ sap.ui.define([
 
         this.getView().byId("tablaUsuarios").setModel(oModelUser,"userModel");
 
-       //this.getView().setModel(oModelUser, "tabModel");
-
-
-
-
-            /*********************************************/
-
         
         var oModel = new JSONModel({
-        Source: 'http://'+server+'/visualizar?id=23018996-K',
+        Source: 'http://'+server+'/visualizar?id='+rut,
         Title: "Documento a firmar",
         Height: "600px"
         
@@ -179,18 +167,7 @@ sap.ui.define([
         pdf.attachSourceValidationFailed(oModel, this._onValidarPDF);
 
 
-        //var content = '<iframe src="http://'+server+'/visualizar?id=23018996-K"  height="90%" width="90%" allowfullscreen ></iframe>';
-
-        //var oHtml = this.getView().byId("pdfContainer");
-
-        //oHtml.setContent(content);
-
-        this.getView().setBusy(false);
-
-
-
-
-
+         this.getView().setBusy(false);
 
       }
    });
