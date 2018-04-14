@@ -11,7 +11,9 @@ var path = require('path');
 var SSH2Utils = require('ssh2-utils');
 	    var ssh = new SSH2Utils();
 
+	    //var server = {host: "165.227.205.2", username:"abraham", password:"13Julio2015" };
 	    var server = {host: "sftp19.sapsf.com", username:"1212045T", password:"m7wXkp5qVcuEP" };
+
 
 // Constants
 const PORT = 9999;

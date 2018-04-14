@@ -2,7 +2,7 @@ version: '2'
 services:
   # Define the Flask web application
   app:
-    container_name: app_instance_001
+    container_name: app_firma_digital
 
     image: acastropardo/app_firma_digital
 
@@ -22,6 +22,8 @@ services:
 
     depends_on:
      - mongo
+     - firmad
+     - frontend_firmad
 
     links:
      - mongo
@@ -56,6 +58,8 @@ services:
       - ./src/mongodb:/data/db
     ports:
       - "27017:27017"
+    expose: 
+      - "27017"
 
 
   firmad:
@@ -67,8 +71,8 @@ services:
     expose: 
           - "9999"
 
-    depends_on:
-     - app
+    # depends_on:
+    #  - app
 
   frontend_firmad:
     image: acastropardo/frontend_firmadigitalv2
@@ -76,7 +80,9 @@ services:
     build: ./src/UI
     ports:
         - "10000:10000"
-    depends_on:
-     - app
+    expose:
+        - "10000"
+    # depends_on:
+    #  - app
 
     
