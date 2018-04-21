@@ -4,6 +4,7 @@ var app = express();
 var router = express.Router();
 var session = require('express-session');
 var request = require('request');
+const util = require('util')
 
 
 //var querystring = require('querystring');
@@ -24,23 +25,17 @@ localStorage.setItem('myFirstKey', 'myFirstValue');
 router.use(function timeLog(req, res, next) {
 	sess = req.session;
 	//sess.username;
-  console.log('Time: ', Date.now());
+  //console.log('Time: ', Date.now());
 
   next();
 });
 
-
-
-
-
-
-
-
-  
 router.get('/', function(req, res){
 
+	//console.log('/');
+
 	var key = 'basic U0ZBUElAYWdyb3N1cGVyc0Q6UGhyMjAxOA==';
-  	var url = "https://api19.sapsf.com/odata/v2/User('SFAPI')?$format=json"
+  	var url = "https://api19.sapsf.com/odata/v2/Attachment?$format=json&$top=1"
   	
   	
 //Lets configure and request
@@ -62,8 +57,30 @@ request({
 
         //var username = JSON.parse(body).username;
         //console.log(body.username);
-        res.setHeader('Content-Type', 'application/json');
-        res.send(body);
+
+        //JSON.parse(req.params[0]).rut;
+
+        var content = JSON.parse(body);
+
+ 		//console.log(util.inspect(content, false, 4))
+        
+        //res.setHeader('Content-Type', 'application/json');
+        //
+		res.setHeader('Content-Type', 'application/pdf');
+		//res.setHeader('Content-Length', content.d.results[0].fileSize);
+        //res.setHeader('Content-disposition', 'attachment');
+        //res.setHeader('Content-disposition', 'inline; filename=lectura.pdf' );
+        //res.setHeader('Transfer-Encoding', 'chunked');
+        
+        //res.setHeader('','charset=binary')
+        //res.send(content);
+
+        var buffer = new Buffer(content.d.results[0].fileContent, "binary");
+        //res.send(content.d.results[0].fileContent);
+        //res.send(buffer);
+        //buffer.pipe(res);
+
+
     }
 
 
@@ -75,39 +92,9 @@ request({
 
 });
 
-router.get('/usuarios', function(req, res){
-	var key = 'basic U0ZBUElAYWdyb3N1cGVyc0Q6UGhyMjAxOA==';
-  	var url = "https://api19.sapsf.com/odata/v2/User?$format=json&$top=10";
-
-
-  	//Lets configure and request
-request({
-    url: url, //URL to hit
-    //qs: {from: 'example', time: +new Date()}, //Query string data
-    method: 'GET', // specify the request type
-    headers: { // speciyfy the headers
-        'Authorization': 'Basic U0ZBUElAYWdyb3N1cGVyc0Q6UGhyMjAxOA==',
-        'Custom-Header': 'Custom Value'
-    },
-    //body: 'Hello Hello! String body!' //Set the body as a string
-}, function(error, response, body){
-    if(error) {
-        console.log(error);
-    } else {
-        console.log(response.statusCode);
-        console.log(body);
-        res.setHeader('Content-Type', 'application/json');
-        res.send(body);
-    }
-
-
-});
-
-});
-
 
 router.get('/upsert', function(req, res){
-
+	console.log('upsert');
 
 
 	var key = 'basic U0ZBUElAYWdyb3N1cGVyc0Q6UGhyMjAxOA==';
@@ -115,43 +102,38 @@ router.get('/upsert', function(req, res){
   	var acastro = "acastro";
 
 
-  		// Creando un ejemplo de JSON
-		var session = {
-		  'screens': [],
-		  'state': true
-		};
-
-		session.screens.push({ 'name': 'screenA', 'width': 450, 'height': 250 });
-		session.screens.push({ 'name': 'screenB', 'width': 650, 'height': 350 });
-		session.screens.push({ 'name': 'screenC', 'width': 750, 'height': 120 });
-		session.screens.push({ 'name': 'screenD', 'width': 250, 'height': 60 });
-		session.screens.push({ 'name': 'screenE', 'width': 390, 'height': 120 });
-		session.screens.push({ 'name': 'screenF', 'width': 1240, 'height': 650 });
-
-		// Convirte el JSON string con JSON.stringify()
-		// entonces guarda con localStorage con el nombre de la sesión
-		localStorage.setItem('session', JSON.stringify(session));
-
-		// Ejemplo de como transformar el String generado usando 
-		// JSON.stringify() y guardándolo en localStorage como objeto JSON otra vez
-		var restoredSession = JSON.parse(localStorage.getItem('session'));
-
-		// Ahora la variable restoredSession contiene el objeto que fue guardado
-		// en localStorage
-		//console.log(restoredSession);
-
 
 		var body = {
 			'__metadata' : 
 				{
-				'uri' : "https://api19.sapsf.com/odata/v2/User('acastro')",
-				'type' : "SFOData.User"
+				'uri' : "https://api19.sapsf.com/odata/v2/Attachment(908L)",
+				'type' : "SFOData.Attachment",
+				'name'	: "SFOData.Attachment",
 				}
 			,
-			'status' : 'Active',
+			'ownerId' : 'RCM_Undecided',
 			'userId' : 'acastro',
-			'username' : 'acastropardo'
+			'moduleCategory' : 'offerletter',
+			'fileContent'	: '',
+			'viewable'		: 'true',
+			'attachmentId'	: '908',
+			'imageConvertInProgress' : 'false',
+			'deprecable'	: 'false',
+			'userId'		: '15106101',
+			'documentEntityId'	: '191',
+			'fileExtension'	: 'pdf',
+			'module' 		: 'RECRUITING', 
+			'documentEntityType'	: 'OFFER_LETTER',
+			'deletable'		: 'true', 
+			'documentCategory' :'OFFER_ATTACHMENT',
+			'fileName'	: 'OfferLetter.pdf',
+			'softDelete' : 'false',
+			'searchable'	: 'false',
+
 		}
+
+
+		
 
 	//Lets configure and request
 
@@ -183,5 +165,6 @@ router.get('/upsert', function(req, res){
 });
 
 });
+
 
 module.exports = router;

@@ -1,0 +1,131 @@
+// This script manipulates an XML Document's structure.
+    
+
+ // Import the ExecutionUtil class
+import com.boomi.execution.ExecutionUtil;
+
+logger = ExecutionUtil.getBaseLogger();
+
+     import org.jdom.input.SAXBuilder;
+     import org.jdom.Document;
+     import org.jdom.Element;
+     import org.jdom.xpath.XPath;
+     import org.jdom.output.XMLOutputter;
+     
+     // Loop through the Process Documents
+     for ( int i = 0; i < dataContext.getDataCount(); i++ ) {
+     
+          InputStream is = dataContext.getStream(i);
+          Properties props = dataContext.getProperties(i);
+     
+          // Build XML Document
+          SAXBuilder builder = new SAXBuilder();
+          Document doc = builder.build(is);
+     
+          // Here's how to grab values from the current data
+     
+          // Create an XPath statement to search for the element or elements you care about:
+          XPath fechaFinalP;
+          
+         fechaFinalP = XPath.newInstance("//CompoundEmployee//person//employment_information//job_information//end_date");
+     
+          // Select a single node and grab the actual value
+          fechaP = fechaFinalP.selectSingleNode(doc);
+
+// OR multiple nodes (if multiple nodes you will need to loop through them)
+          myElements = fechaFinalP.selectNodes(doc);
+     
+          for (Element myElement : myElements) {
+             fecha = myElement.getText();
+              if (fecha != "9999-12-31"){ 
+                   fechaParentP = myElement.getParent(); 
+                   //boolean remover = fechaParentP.removeContent();
+                   boolean remover = fechaParentP.detach();
+                    //if (remover == false){logger.severe("no se pudo eliminar" + fecha);}
+                    //else{logger.warning("nodo eliminado OK" + fecha);}
+              }
+
+          }
+     
+fechaFinalP = XPath.newInstance("//CompoundEmployee//person//employment_information//compensation_information/end_date");
+     
+          // Select a single node and grab the actual value
+          fechaP = fechaFinalP.selectSingleNode(doc);
+
+// OR multiple nodes (if multiple nodes you will need to loop through them)
+          myElements = fechaFinalP.selectNodes(doc);
+     
+          for (Element myElement : myElements) {
+             fecha = myElement.getText();
+              if (fecha != "9999-12-31"){ 
+                   fechaParentP = myElement.getParent(); 
+                   //boolean remover = fechaParentP.removeContent();
+                   boolean remover = fechaParentP.detach();
+                    //if (remover == false){logger.severe("no se pudo eliminar" + fecha);}
+                    //else{logger.warning("nodo eliminado OK" + fecha);}
+              }
+
+          }
+      
+fechaFinalP = XPath.newInstance("//CompoundEmployee//person//personal_information/end_date");
+     
+          // Select a single node and grab the actual value
+          fechaP = fechaFinalP.selectSingleNode(doc);
+
+// OR multiple nodes (if multiple nodes you will need to loop through them)
+          myElements = fechaFinalP.selectNodes(doc);
+     
+          for (Element myElement : myElements) {
+             fecha = myElement.getText();
+              if (fecha != "9999-12-31"){ 
+                   fechaParentP = myElement.getParent(); 
+                   //boolean remover = fechaParentP.removeContent();
+                   boolean remover = fechaParentP.detach();
+                    //if (remover == false){logger.severe("no se pudo eliminar" + fecha);}
+                    //else{logger.warning("nodo eliminado OK" + fecha);}
+              }
+
+          }
+        
+
+fechaFinalP = XPath.newInstance("//CompoundEmployee//person//address_information/end_date");
+     
+          // Select a single node and grab the actual value
+          fechaP = fechaFinalP.selectSingleNode(doc);
+
+// OR multiple nodes (if multiple nodes you will need to loop through them)
+          myElements = fechaFinalP.selectNodes(doc);
+     
+          for (Element myElement : myElements) {
+             fecha = myElement.getText();
+              if (fecha != "9999-12-31"){ 
+                   fechaParentP = myElement.getParent(); 
+                   //boolean remover = fechaParentP.removeContent();
+                   boolean remover = fechaParentP.detach();
+                    //if (remover == false){logger.severe("no se pudo eliminar" + fecha);}
+                    //else{logger.warning("nodo eliminado OK" + fecha);}
+              }
+
+          }
+
+    isPrimaryP = XPath.newInstance("//CompoundEmployee//person//national_id_card//isPrimary");
+    myElements = isPrimaryP.selectNodes(doc);
+
+    for (Element myElement : myElements) {
+        isPrimary = myElement.getText();
+        if (isPrimary != "true"){
+            isPrimaryParent = myElement.getParent();
+            boolean remover = isPrimaryParent.removeContent();
+           boolean removert = isPrimaryParent.detach();
+            //if (remover == false){logger.severe("no se pudo eliminar" + fecha);}
+            //else{logger.warning("nodo eliminado OK" + fecha);}
+        }
+
+    }
+          // When you're finished manipulating the XML data, you'll need to output the Document's data to an InputStream to pass to the next step in your Process work flow.
+          XMLOutputter outputter = new XMLOutputter();
+          is = new ByteArrayInputStream(outputter.outputString(doc).getBytes("UTF-8"));
+     
+          dataContext.storeStream(is, props);
+   
+     }
