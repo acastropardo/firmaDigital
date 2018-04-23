@@ -35,7 +35,7 @@ router.get('/', function(req, res){
 	//console.log('/');
 
 	var key = 'basic U0ZBUElAYWdyb3N1cGVyc0Q6UGhyMjAxOA==';
-  	var url = "https://api19.sapsf.com/odata/v2/Attachment?$format=json&$top=1"
+  	var url = "https://api19.sapsf.com/odata/v2/Attachment?$format=json&$filter=attachmentId eq '481' " ;
   	
   	
 //Lets configure and request
@@ -86,45 +86,52 @@ request({
 
 
 router.get('/upsert', function(req, res){
-	console.log('upsert');
-
-
+	
 	var key = 'basic U0ZBUElAYWdyb3N1cGVyc0Q6UGhyMjAxOA==';
-  	var url = "https://api19.sapsf.com/odata/v2/User?$format=json"
+  	var url = "https://api19.sapsf.com/odata/v2/upsert?$format=json"
   	var acastro = "acastro";
 
+  	
+  	var fileCont;
+  	var text;
+  	var base;
+  	var fs = require('fs')
+
+	fs.readFile('./routes/test.pdf', function (err,data) {
+  	if (err) {
+    return console.log(err);
+  		}
+  	else{
+  		
+  		
+  		let fileCont = new Buffer(data, 'binary');  
+  		text = fileCont;
+  		//console.log(data);
+  		//fileCont = data;
+  		let base = fileCont.toString('base64');
+
+  		//console.log(data);
 
 
-		var body = {
-			'__metadata' : 
-				{
-				'uri' : "https://api19.sapsf.com/odata/v2/Attachment(908L)",
-				'type' : "SFOData.Attachment",
-				'name'	: "SFOData.Attachment",
-				}
-			,
-			'ownerId' : 'RCM_Undecided',
-			'userId' : 'acastro',
-			'moduleCategory' : 'offerletter',
-			'fileContent'	: '',
-			'viewable'		: 'true',
-			'attachmentId'	: '908',
-			'imageConvertInProgress' : 'false',
-			'deprecable'	: 'false',
-			'userId'		: '15106101',
-			'documentEntityId'	: '191',
-			'fileExtension'	: 'pdf',
-			'module' 		: 'RECRUITING', 
-			'documentEntityType'	: 'OFFER_LETTER',
-			'deletable'		: 'true', 
-			'documentCategory' :'OFFER_ATTACHMENT',
-			'fileName'	: 'OfferLetter.pdf',
-			'softDelete' : 'false',
-			'searchable'	: 'false',
-
-		}
 
 
+
+	var body =	{
+	    "__metadata": {"uri": "Attachment"},
+	    "deletable": false,
+	    "deprecable": false,
+	    "externalId": 0,
+	    "fileName": "test.pdf",
+	    "fileContent": base,
+	    "imageConvertInProgress": false,
+	    "module": "GENERIC_OBJECT",
+	    "searchable": false,
+	    "softDelete": false,
+	    "userId": "acastro",
+	    "viewable": false
+	}
+
+	console.log(body);
 		
 
 	//Lets configure and request
@@ -143,6 +150,7 @@ router.get('/upsert', function(req, res){
 }, function(error, response, body){
     if(error) {
         console.log(error);
+
     } else {
         //console.log(response.statusCode);
         //console.log(body);
@@ -155,6 +163,21 @@ router.get('/upsert', function(req, res){
 
 
 });
+
+
+
+
+
+
+
+
+  	}
+
+	});
+
+
+
+
 
 });
 
