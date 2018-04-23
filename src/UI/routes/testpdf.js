@@ -52,20 +52,12 @@ request({
     if(error) {
         console.log(error);
     } else {
-        //console.log(response.statusCode);
-        //console.log(body);
-
-        //var username = JSON.parse(body).username;
-        //console.log(body.username);
-
-        //JSON.parse(req.params[0]).rut;
+ 
 
         var content = JSON.parse(body);
 
- 		//console.log(util.inspect(content, false, 4))
-        
-        //res.setHeader('Content-Type', 'application/json');
-        //
+        res.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+
 		res.setHeader('Content-Type', 'application/pdf');
 		//res.setHeader('Content-Length', content.d.results[0].fileSize);
         //res.setHeader('Content-disposition', 'attachment');
@@ -73,12 +65,12 @@ request({
         //res.setHeader('Transfer-Encoding', 'chunked');
         
         //res.setHeader('','charset=binary')
-        //res.send(content);
+        let buff = new Buffer(content.d.results[0].fileContent, 'base64');  
+        let text = buff.toString('ascii');
 
-        var buffer = new Buffer(content.d.results[0].fileContent, "binary");
-        //res.send(content.d.results[0].fileContent);
-        //res.send(buffer);
-        //buffer.pipe(res);
+        res.send(buff); 
+
+
 
 
     }
