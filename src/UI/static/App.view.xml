@@ -84,17 +84,16 @@
           <Button type="Reject" text="Rechazar" press="onRechazar" />
         </FlexBox> -->
 
-            <Toolbar>
+<!--             <Toolbar>
         <ToolbarSpacer/>
         <Label id="__labe23" required="true" text="Clave" width="10%"/> 
         <Input editable="true" fieldWidth="25%" id="password" type="Password" maxWidth="30%" width="25%"/>
         <Button type = "Accept" text="Aceptar" press="onAceptar" />
         <Button type="Reject" text="Rechazar" press="onRechazar" />
-        <!-- <Button icon="sap-icon://action" press="" /> -->
-
+        
         
         <ToolbarSpacer/>
-      </Toolbar>
+      </Toolbar> -->
     </ScrollContainer>
 
 

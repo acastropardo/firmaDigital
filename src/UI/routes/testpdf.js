@@ -91,7 +91,6 @@ router.get('/upsert', function(req, res){
   	var url = "https://api19.sapsf.com/odata/v2/upsert?$format=json"
   	var acastro = "acastro";
 
-<<<<<<< HEAD
 
 
 		var body = {
@@ -124,7 +123,7 @@ router.get('/upsert', function(req, res){
 		}
 
 
-=======
+
   	
   	var fileCont;
   	var text;
@@ -166,7 +165,7 @@ router.get('/upsert', function(req, res){
 	}
 
 	console.log(body);
->>>>>>> 3fc049f01e3ec043b45d9beb55627ba8c9418bb5
+
 		
 
 	//Lets configure and request

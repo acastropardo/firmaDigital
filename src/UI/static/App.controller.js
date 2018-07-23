@@ -152,19 +152,19 @@ sap.ui.define([
         this.getView().byId("tablaUsuarios").setModel(oModelUser,"userModel");
 
         
-        var oModel = new JSONModel({
-        Source: 'http://'+server+'/visualizar?id='+rut,
-        Title: "Documento a firmar",
-        Height: "600px"
-        
-        });
+//        var oModel = new JSONModel({
+//        Source: 'http://'+server+'/visualizar?id='+rut,
+//        Title: "Documento a firmar",
+//        Height: "600px"
+//        
+//        });
 
         
-        this.getView().setModel(oModel);
+//        this.getView().setModel(oModel);
 
-        var pdf = this.getView().byId("PDFViewer");
+//        var pdf = this.getView().byId("PDFViewer");
 
-        pdf.attachSourceValidationFailed(oModel, this._onValidarPDF);
+//        pdf.attachSourceValidationFailed(oModel, this._onValidarPDF);
 
 
          this.getView().setBusy(false);

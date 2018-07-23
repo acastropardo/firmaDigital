@@ -76,7 +76,7 @@ request({
 });
 
 router.get('/usuarios', function(req, res){
-	var key = 'basic U0ZBUElAYWdyb3N1cGVyc0Q6UGhyMjAxOA==';
+	var key = 'Basic U0ZBUElAY29tZXJjaWFsa0Q6UGVyZm9ybWFuY2UyMDE4';
   	var url = "https://api19.sapsf.com/odata/v2/User?$format=json&$top=10";
 
 
@@ -86,7 +86,7 @@ request({
     //qs: {from: 'example', time: +new Date()}, //Query string data
     method: 'GET', // specify the request type
     headers: { // speciyfy the headers
-        'Authorization': 'Basic U0ZBUElAYWdyb3N1cGVyc0Q6UGhyMjAxOA==',
+        'Authorization': 'Basic U0ZBUElAY29tZXJjaWFsa0Q6UGVyZm9ybWFuY2UyMDE4',
         'Custom-Header': 'Custom Value'
     },
     //body: 'Hello Hello! String body!' //Set the body as a string
