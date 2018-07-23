@@ -85,8 +85,8 @@ passport.use(new LocalStrategy(
 var myStrategy = new SamlStrategy(
 	{
     path: '/users/login/sf',
-    entryPoint: 'https://hcm19preview.sapsf.com/sf/idp/SAML2/SSO/Redirect/company/abastiblesT1',
-    issuer: 'https://hcm19preview.sapsf.com/sf/idp/SAML2/company/abastiblesT1'
+    entryPoint: 'https://hcm19.sapsf.com/sf/idp/SAML2/SSO/Redirect/company/comercialkD',
+    issuer: 'https://hcm19.sapsf.com/sf/idp/SAML2/company/comercialkD'
   },
   function(profile, done) {
    User.getUserByUsername(profile.nameID, function(err, user){    

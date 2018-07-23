@@ -98,7 +98,7 @@ router.get('/upsert', function(req, res){
 		var body = {
 			'__metadata' : 
 				{
-				'uri' : "https://api19.sapsf.com/odata/v2/Attachment(908L)",
+				'uri' : "https://api19.sapsf.com/odata/v2/Attachment('908L')",
 				'type' : "SFOData.Attachment",
 				'name'	: "SFOData.Attachment",
 				}
